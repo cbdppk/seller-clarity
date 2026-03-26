@@ -10,7 +10,11 @@ export function SampleChip({
   onClick: () => void;
 }) {
   return (
-    <Button variant="secondary" className="rounded-full px-3 py-2 text-xs" onClick={onClick}>
+    <Button
+      variant="secondary"
+      className="rounded-full border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm"
+      onClick={onClick}
+    >
       {label}
     </Button>
   );
