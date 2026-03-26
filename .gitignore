@@ -1,0 +1,59 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# build outputs
+/.next/
+/out/
+/build
+/dist
+
+# production
+*.tsbuildinfo
+next-env.d.ts
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# turbo
+.turbo
+
+# testing
+coverage/
+
+# cache
+.cache/
+.parcel-cache/
+
+# editor / OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# local database files
+*.sqlite
+*.sqlite3
+*.db
+
+# uploaded/generated files you don't want in git
+uploads/
+tmp/
+temp/
+
