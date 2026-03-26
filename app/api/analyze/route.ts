@@ -15,7 +15,6 @@ export async function POST(req: NextRequest) {
         {
           records: [],
           totals: { revenue: 0, entries: 0 },
-          topItems: [],
           insights: ["We could not validate the extracted result."],
           warnings: ["Schema validation failed on the server."],
         },
@@ -29,7 +28,6 @@ export async function POST(req: NextRequest) {
       {
         records: [],
         totals: { revenue: 0, entries: 0 },
-        topItems: [],
         insights: ["We could not analyze the sales notes."],
         warnings: ["Request parsing failed."],
       },

@@ -38,7 +38,6 @@ export function mockAnalyze(text: string): AnalysisResult {
     records.push({
       item,
       amount,
-      currency: "GHS",
       channel: "unknown",
       note: line,
     });
@@ -70,9 +69,6 @@ export function mockAnalyze(text: string): AnalysisResult {
     const repeat = topItems.find((item) => item.count > 1);
     if (repeat) insights.push(`${repeat.item} appears repeatedly, which may suggest strong demand.`);
   }
-  while (insights.length < 3) {
-    insights.push("Keep entering sales consistently so the app can show stronger patterns.");
-  }
 
   return {
     records,
@@ -81,7 +77,6 @@ export function mockAnalyze(text: string): AnalysisResult {
       entries: records.length,
       averageSale: records.length ? revenue / records.length : 0,
     },
-    topItems,
     insights: insights.slice(0, 3),
     warnings: warnings.length ? warnings.slice(0, 3) : undefined,
   };

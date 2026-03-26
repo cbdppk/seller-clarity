@@ -11,7 +11,7 @@ import { Sparkles } from "lucide-react";
 
 export function HomeForm() {
   const router = useRouter();
-  const [text, setText] = useState(sampleInputs[0].text);
+  const [text, setText] = useState<string>(sampleInputs[0].text);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 

@@ -5,10 +5,19 @@ import { Card } from "@/components/ui/card";
 import { BarChart, Bar, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 export function RevenueChart({ result }: { result: AnalysisResult }) {
-  const data = result.topItems.map((item) => ({
-    name: item.item.length > 12 ? `${item.item.slice(0, 12)}…` : item.item,
-    revenue: item.revenue,
-  }));
+  const grouped = new Map<string, number>();
+
+  for (const record of result.records) {
+    grouped.set(record.item, (grouped.get(record.item) ?? 0) + record.amount);
+  }
+
+  const data = [...grouped.entries()]
+    .map(([item, revenue]) => ({
+      name: item.length > 12 ? `${item.slice(0, 12)}…` : item,
+      revenue,
+    }))
+    .sort((a, b) => b.revenue - a.revenue)
+    .slice(0, 5);
 
   if (data.length === 0) return null;
 
