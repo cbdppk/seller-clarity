@@ -11,7 +11,7 @@ You own:
 - microcopy
 - demo clarity
 - 45-second pitch
-
+ 
 Your job is to make the app feel understandable and impressive on a phone screen.
 
 ## The skills you must use
