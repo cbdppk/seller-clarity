@@ -6,10 +6,35 @@
   color-scheme: light;
 }
 
+html.dark {
+  color-scheme: dark;
+}
+
 html, body {
   min-height: 100%;
   background: #f8fafc;
   color: #0f172a;
+}
+
+html.dark, html.dark body {
+  background: #161616;
+  color: #e5e7eb;
+}
+
+:root {
+  --chart-text: #0f172a;
+  --chart-muted: #475569;
+  --tooltip-bg: #ffffff;
+  --tooltip-text: #0f172a;
+  --tooltip-border: rgba(226, 232, 240, 1);
+}
+
+html.dark {
+  --chart-text: #f1f1f1;
+  --chart-muted: #a7a7a7;
+  --tooltip-bg: #1a1a1a;
+  --tooltip-text: #f8f8f8;
+  --tooltip-border: rgba(55, 55, 55, 1);
 }
 
 body {
@@ -24,10 +49,24 @@ body {
   @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
 }
 
+.dark .card {
+  border-color: #2a2a2a;
+  background: #1a1a1a;
+  box-shadow: none;
+}
+
 .section-title {
   @apply text-sm font-semibold text-slate-800;
 }
 
+.dark .section-title {
+  color: #e7e7e7;
+}
+
 .muted {
   @apply text-sm text-slate-500;
+}
+
+.dark .muted {
+  color: #b0b0b0;
 }
