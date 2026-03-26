@@ -1,6 +1,7 @@
 "use client";
 
 import { AnalysisResult } from "@/lib/contracts";
+import { currency } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { BarChart, Bar, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
@@ -22,16 +23,39 @@ export function RevenueChart({ result }: { result: AnalysisResult }) {
   if (data.length === 0) return null;
 
   return (
-    <Card className="p-4">
-      <p className="mb-3 text-sm font-semibold text-slate-900">Revenue by item</p>
-      <div className="h-64 w-full">
+    <Card className="p-4 text-slate-900 dark:text-slate-50">
+      <p className="mb-3 text-sm font-semibold text-[#1E40AF] dark:text-slate-50">Revenue by item</p>
+      <div className="h-56 w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data}>
-            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-            <XAxis dataKey="name" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis fontSize={12} tickLine={false} axisLine={false} />
-            <Tooltip />
-            <Bar dataKey="revenue" radius={[10, 10, 0, 0]} />
+          <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+            <CartesianGrid vertical={false} strokeDasharray="2 2" stroke="var(--chart-muted)" />
+            <XAxis
+              dataKey="name"
+              tickLine={false}
+              axisLine={false}
+              interval="preserveStartEnd"
+              tick={{ fill: "var(--chart-text)", fontSize: 12 }}
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickCount={4}
+              tickFormatter={(value) => currency(Number(value))}
+              tick={{ fill: "var(--chart-text)", fontSize: 12 }}
+            />
+            <Tooltip
+              formatter={(value) => currency(Number(value))}
+              labelFormatter={(label) => String(label)}
+              wrapperStyle={{ color: "var(--tooltip-text)" }}
+              contentStyle={{
+                backgroundColor: "var(--tooltip-bg)",
+                border: "1px solid var(--tooltip-border)",
+                borderRadius: 12,
+              }}
+              labelStyle={{ color: "var(--tooltip-text)" }}
+              itemStyle={{ color: "var(--tooltip-text)" }}
+            />
+            <Bar dataKey="revenue" fill="currentColor" radius={[10, 10, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

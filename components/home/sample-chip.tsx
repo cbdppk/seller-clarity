@@ -12,7 +12,7 @@ export function SampleChip({
   return (
     <Button
       variant="secondary"
-      className="rounded-full border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm"
+      className="rounded-full border-indigo-200 bg-white px-3 py-2 text-xs font-medium text-[#1E40AF] shadow-sm dark:border-[#2a2a2a] dark:bg-[#161616] dark:text-slate-200"
       onClick={onClick}
     >
       {label}
