@@ -31,7 +31,11 @@ export function HomeForm() {
       }
 
       const data = await res.json();
-      saveResult(data);
+      const saved = saveResult(data);
+      if (!saved) {
+        throw new Error("Invalid analysis result");
+      }
+
       router.push("/results");
     } catch (err) {
       setError("Could not analyze right now. Try sample data again.");
