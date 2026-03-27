@@ -37,6 +37,7 @@ export default function ResultsPage() {
       if (!saved) {
         throw new Error("Could not save sample result");
       }
+
       setResult(sampleResult);
       setErrorMessage("");
     } finally {
