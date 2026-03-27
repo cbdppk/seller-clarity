@@ -24,8 +24,6 @@ export default function ResultsPage() {
     setLoading(false);
   }, []);
 
-=======
->>>>>>> origin/main
   return (
     <main className="mx-auto min-h-screen max-w-md px-4 py-6">
       <div className="mb-5 flex items-center justify-between gap-3">
@@ -54,43 +52,9 @@ export default function ResultsPage() {
         </div>
       ) : errorMessage ? (
         <div className="card p-4">
-          <p className="text-sm font-semibold text-red-700">Could not open saved results</p>
-          <p className="mt-1 text-sm text-slate-600">
-            {errorMessage} Go back and run the analysis again.
-          </p>
-          <div className="mt-4">
-            <Link href="/">
-              <Button variant="secondary" className="w-full">
-                Back to notes
-              </Button>
-            </Link>
-          </div>
-        </div>
-      ) : !result ? (
-        <div className="card p-4">
           <p className="text-sm font-semibold text-red-700 dark:text-red-200">Could not open saved results</p>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-            Go back, paste some sales notes, and run the analysis first.
-          </p>
-          <div className="mt-4">
-            <Link href="/">
-              <Button variant="secondary" className="w-full">
-                Back to notes
-              </Button>
-            </Link>
-          </div>
-        </div>
-      ) : !result ? (
-        <div className="card p-4">
-          <p className="text-sm font-semibold text-[#1E40AF] dark:text-slate-50">No results yet</p>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-            Paste some sales notes first, or use sample data to preview the results screen.
-=======
-        <div className="card p-4">
-          <p className="text-sm font-semibold text-red-700">Could not open saved results</p>
-          <p className="mt-1 text-sm text-slate-600">
             {errorMessage} Go back and run the analysis again.
->>>>>>> origin/main
           </p>
           <div className="mt-4">
             <Link href="/">
