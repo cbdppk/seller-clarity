@@ -1,27 +1,26 @@
-import { AlertTriangle } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
 export function WarningsCard({ warnings }: { warnings?: string[] }) {
   if (!warnings || warnings.length === 0) return null;
 
   return (
-    <Card className="border-amber-200 bg-amber-50/70 p-4 dark:border-amber-900/60 dark:bg-amber-900/20">
-      <div className="flex items-start gap-2">
-        <AlertTriangle className="mt-0.5 text-amber-700 dark:text-amber-200" size={18} />
-        <div>
-          <p className="text-sm font-semibold text-amber-900 dark:text-amber-100">Check these lines</p>
-          <p className="mt-1 text-xs text-amber-800 dark:text-amber-200">
-            Some parts were not clear, so the app did not guess.
-          </p>
+    <Card className="border-amber-200 bg-amber-50/60">
+      <CardContent className="space-y-4 p-6">
+        <div className="space-y-2">
+          <Badge className="w-fit bg-amber-900 text-white hover:bg-amber-900">Needs review</Badge>
+          <p className="text-lg font-semibold text-amber-950">Some lines were left out on purpose.</p>
+          <p className="text-sm leading-6 text-amber-900/80">The app keeps the result stable by warning when a note is not clear enough to trust.</p>
         </div>
-      </div>
-      <ul className="mt-3 space-y-2 text-sm text-amber-900 dark:text-amber-100">
-        {warnings.map((warning) => (
-          <li key={warning} className="rounded-xl bg-white/60 px-3 py-2 dark:bg-[#161616]/40">
-            {warning}
-          </li>
-        ))}
-      </ul>
+
+        <ul className="space-y-3 text-sm text-amber-950">
+          {warnings.map((warning) => (
+            <li key={warning} className="rounded-[20px] border border-amber-200 bg-white/80 px-4 py-3">
+              {warning}
+            </li>
+          ))}
+        </ul>
+      </CardContent>
     </Card>
   );
 }

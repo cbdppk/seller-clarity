@@ -4,24 +4,6 @@
 
 :root {
   color-scheme: light;
-}
-
-html.dark {
-  color-scheme: dark;
-}
-
-html, body {
-  min-height: 100%;
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-html.dark, html.dark body {
-  background: #161616;
-  color: #e5e7eb;
-}
-
-:root {
   --chart-text: #0f172a;
   --chart-muted: #475569;
   --tooltip-bg: #ffffff;
@@ -29,44 +11,60 @@ html.dark, html.dark body {
   --tooltip-border: rgba(226, 232, 240, 1);
 }
 
-html.dark {
-  --chart-text: #f1f1f1;
-  --chart-muted: #a7a7a7;
-  --tooltip-bg: #1a1a1a;
-  --tooltip-text: #f8f8f8;
-  --tooltip-border: rgba(55, 55, 55, 1);
+html,
+body {
+  min-height: 100%;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  background: #fcfcfb;
 }
 
 * {
   box-sizing: border-box;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(15, 23, 42, 0.12);
+}
+
 .card {
-  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  @apply rounded-[24px] border border-slate-200 bg-white shadow-[0_8px_24px_rgba(15,23,42,0.05)];
 }
 
-.dark .card {
-  border-color: #2a2a2a;
-  background: #1a1a1a;
-  box-shadow: none;
-}
+@media print {
+  body {
+    background: white;
+  }
 
-.section-title {
-  @apply text-sm font-semibold text-slate-800;
-}
+  .no-print {
+    display: none !important;
+  }
 
-.dark .section-title {
-  color: #e7e7e7;
-}
+  .print-area {
+    width: 100%;
+  }
 
-.muted {
-  @apply text-sm text-slate-500;
-}
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
 
-.dark .muted {
-  color: #b0b0b0;
+  @page {
+    margin: 16mm;
+  }
 }
