@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { loadResultState, saveResult } from "@/lib/storage";
+import { loadResultState } from "@/lib/storage";
 import { AnalysisResult } from "@/lib/contracts";
 import { SummaryCards } from "@/components/results/summary-cards";
 import { WarningsCard } from "@/components/results/warnings-card";
@@ -11,13 +11,10 @@ import { RevenueChart } from "@/components/results/revenue-chart";
 import { ChannelChart } from "@/components/results/channel-chart";
 import { InsightsList } from "@/components/results/insights-list";
 import { Button } from "@/components/ui/button";
-import { mockAnalyze } from "@/lib/mockAnalyze";
-import { sampleInputs } from "@/lib/sampleInputs";
 
 export default function ResultsPage() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(true);
-  const [tryingSample, setTryingSample] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -27,24 +24,8 @@ export default function ResultsPage() {
     setLoading(false);
   }, []);
 
-  function trySampleData() {
-    if (tryingSample) return;
-    setTryingSample(true);
-    try {
-      const sampleText = sampleInputs[0]?.text ?? "";
-      const sampleResult = mockAnalyze(sampleText);
-      const saved = saveResult(sampleResult);
-      if (!saved) {
-        throw new Error("Could not save sample result");
-      }
-
-      setResult(sampleResult);
-      setErrorMessage("");
-    } finally {
-      setTryingSample(false);
-    }
-  }
-
+=======
+>>>>>>> origin/main
   return (
     <main className="mx-auto min-h-screen max-w-md px-4 py-6">
       <div className="mb-5 flex items-center justify-between gap-3">
@@ -73,19 +54,30 @@ export default function ResultsPage() {
         </div>
       ) : errorMessage ? (
         <div className="card p-4">
-          <p className="text-sm font-semibold text-red-700 dark:text-red-200">Could not open saved results</p>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-            {errorMessage} You can go back and try again, or use sample data to keep the demo moving.
+          <p className="text-sm font-semibold text-red-700">Could not open saved results</p>
+          <p className="mt-1 text-sm text-slate-600">
+            {errorMessage} Go back and run the analysis again.
           </p>
-          <div className="mt-4 flex gap-2">
-            <Link href="/" className="flex-1">
+          <div className="mt-4">
+            <Link href="/">
               <Button variant="secondary" className="w-full">
                 Back to notes
               </Button>
             </Link>
-            <Button className="flex-1" onClick={trySampleData} disabled={tryingSample}>
-              {tryingSample ? "Preparing..." : "Try sample data"}
-            </Button>
+          </div>
+        </div>
+      ) : !result ? (
+        <div className="card p-4">
+          <p className="text-sm font-semibold text-red-700 dark:text-red-200">Could not open saved results</p>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            Go back, paste some sales notes, and run the analysis first.
+          </p>
+          <div className="mt-4">
+            <Link href="/">
+              <Button variant="secondary" className="w-full">
+                Back to notes
+              </Button>
+            </Link>
           </div>
         </div>
       ) : !result ? (
@@ -93,16 +85,33 @@ export default function ResultsPage() {
           <p className="text-sm font-semibold text-[#1E40AF] dark:text-slate-50">No results yet</p>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
             Paste some sales notes first, or use sample data to preview the results screen.
+=======
+        <div className="card p-4">
+          <p className="text-sm font-semibold text-red-700">Could not open saved results</p>
+          <p className="mt-1 text-sm text-slate-600">
+            {errorMessage} Go back and run the analysis again.
+>>>>>>> origin/main
           </p>
-          <div className="mt-4 flex gap-2">
-            <Link href="/" className="flex-1">
+          <div className="mt-4">
+            <Link href="/">
               <Button variant="secondary" className="w-full">
                 Back to notes
               </Button>
             </Link>
-            <Button className="flex-1" onClick={trySampleData} disabled={tryingSample}>
-              {tryingSample ? "Preparing..." : "Try sample data"}
-            </Button>
+          </div>
+        </div>
+      ) : !result ? (
+        <div className="card p-4">
+          <p className="text-sm font-semibold text-[#1E40AF] dark:text-slate-50">No results yet</p>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            Go back, paste some sales notes, and run the analysis first.
+          </p>
+          <div className="mt-4">
+            <Link href="/">
+              <Button variant="secondary" className="w-full">
+                Back to notes
+              </Button>
+            </Link>
           </div>
         </div>
       ) : (

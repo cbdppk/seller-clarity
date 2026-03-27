@@ -1,4 +1,5 @@
-import { AnalysisResult, analysisResultSchema } from "./contracts";
+import { AnalysisResult } from "./contracts";
+import { analysisResultSchema } from "./contracts";
 
 const KEY = "seller-clarity:last-result";
 
@@ -9,7 +10,6 @@ export type LoadResultState =
 
 export function saveResult(result: unknown): result is AnalysisResult {
   if (typeof window === "undefined") return false;
-
   const parsed = analysisResultSchema.safeParse(result);
   if (!parsed.success) {
     return false;
@@ -48,7 +48,7 @@ export function loadResultState(): LoadResultState {
       return {
         status: "error",
         result: null,
-        message: "Saved results could not be opened safely.",
+        message: "We found saved results, but they could not be opened safely.",
       };
     }
 
@@ -57,7 +57,7 @@ export function loadResultState(): LoadResultState {
     return {
       status: "error",
       result: null,
-      message: "Saved results could not be read on this device.",
+      message: "We could not read the saved results on this device.",
     };
   }
 }
