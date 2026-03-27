@@ -38,7 +38,7 @@ export function HomeForm() {
 
       router.push("/results");
     } catch (err) {
-      setError("Could not analyze right now. Try sample data again.");
+      setError("Could not finish the analysis right now. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -53,7 +53,7 @@ export function HomeForm() {
             <p className="text-sm font-semibold">Paste messy sales notes</p>
           </div>
           <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
-            Paste your sales notes the way you already write them on WhatsApp, in a notebook, or in quick daily updates.
+            Paste the sales notes the way you already write them on WhatsApp, in a notebook, or in quick daily updates.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export function HomeForm() {
           </div>
 
           <p className="mt-5 text-xs leading-5 text-slate-500 dark:text-slate-400">
-            We only extract what looks clear. If a line is confusing, the app can warn you instead of guessing.
+            We only pick what looks clear. If a line is confusing, the app warns you instead of guessing.
           </p>
 
           {error ? (
@@ -101,7 +101,7 @@ export function HomeForm() {
             disabled={isDisabled}
             aria-busy={loading}
           >
-            {loading ? "Analyzing your notes..." : "Analyze sales notes"}
+            {loading ? "Checking your sales notes..." : "Analyze sales notes"}
           </Button>
 
           {isDisabled && !loading ? (

@@ -52,8 +52,8 @@ export default function ResultsPage() {
         </div>
       ) : errorMessage ? (
         <div className="card p-4">
-          <p className="text-sm font-semibold text-red-700">Could not open saved results</p>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="text-sm font-semibold text-red-700 dark:text-red-200">Could not open saved results</p>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
             {errorMessage} Go back and run the analysis again.
           </p>
           <div className="mt-4">

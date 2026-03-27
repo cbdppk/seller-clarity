@@ -31,6 +31,11 @@ git commit -m "Describe your change clearly"
 git push origin feat/your-task-name
 ```
 
+git switch main
+git pull origin main
+git branch -d feature/navbar
+git fetch --prune
+
 Open a PR and merge early.
 
 ## Team rules
