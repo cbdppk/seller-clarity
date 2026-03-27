@@ -7,12 +7,12 @@ export function InsightsList({ result }: { result: AnalysisResult }) {
   return (
     <Card className="p-4">
       <div className="mb-3">
-        <p className="text-sm font-semibold text-[#1E40AF] dark:text-slate-50">Advice</p>
-        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Small next steps based on your notes.</p>
+        <p className="text-sm font-semibold text-[#1E40AF] dark:text-slate-50">Simple insights</p>
+        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Quick takeaways from the notes you pasted.</p>
       </div>
 
       {insights.length === 0 ? (
-        <p className="text-sm text-slate-500 dark:text-slate-400">No advice available for this input yet.</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400">No clear insight yet for this set of notes.</p>
       ) : (
         <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
           {insights.map((insight) => (

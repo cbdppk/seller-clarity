@@ -18,7 +18,7 @@ export function SummaryCards({ result }: { result: AnalysisResult }) {
     {
       label: "Total revenue",
       value: currency(result.totals.revenue),
-      helper: "From your pasted notes",
+      helper: "From the notes you pasted",
       icon: Wallet,
       accent: "border-indigo-200 bg-indigo-50 text-indigo-700 dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-slate-200",
       emphasize: true,
@@ -26,14 +26,14 @@ export function SummaryCards({ result }: { result: AnalysisResult }) {
     {
       label: "Sales entries",
       value: String(result.totals.entries),
-      helper: "Extracted lines",
+      helper: "Clear records found",
       icon: BarChart3,
       accent: "border-indigo-200 bg-indigo-50 text-indigo-700 dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-slate-200",
     },
     {
       label: "Average sale",
       value: result.totals.averageSale ? currency(result.totals.averageSale) : "-",
-      helper: "Per entry",
+      helper: "Across saved entries",
       icon: Calculator,
       accent: "border-indigo-200 bg-indigo-50 text-indigo-700 dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-slate-200",
     },

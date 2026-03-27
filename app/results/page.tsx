@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { loadResult, saveResult } from "@/lib/storage";
+import { loadResultState, saveResult } from "@/lib/storage";
 import { AnalysisResult } from "@/lib/contracts";
 import { SummaryCards } from "@/components/results/summary-cards";
 import { WarningsCard } from "@/components/results/warnings-card";
@@ -18,9 +18,12 @@ export default function ResultsPage() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [tryingSample, setTryingSample] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    setResult(loadResult());
+    const stored = loadResultState();
+    setResult(stored.result);
+    setErrorMessage(stored.status === "error" ? stored.message : "");
     setLoading(false);
   }, []);
 
@@ -30,8 +33,12 @@ export default function ResultsPage() {
     try {
       const sampleText = sampleInputs[0]?.text ?? "";
       const sampleResult = mockAnalyze(sampleText);
-      saveResult(sampleResult);
+      const saved = saveResult(sampleResult);
+      if (!saved) {
+        throw new Error("Could not save sample result");
+      }
       setResult(sampleResult);
+      setErrorMessage("");
     } finally {
       setTryingSample(false);
     }
@@ -63,11 +70,28 @@ export default function ResultsPage() {
           <div className="h-28 animate-pulse rounded-2xl bg-slate-100 dark:bg-[#1a1a1a]" />
           <div className="h-56 animate-pulse rounded-2xl bg-slate-100 dark:bg-[#1a1a1a]" />
         </div>
+      ) : errorMessage ? (
+        <div className="card p-4">
+          <p className="text-sm font-semibold text-red-700 dark:text-red-200">Could not open saved results</p>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            {errorMessage} You can go back and try again, or use sample data to keep the demo moving.
+          </p>
+          <div className="mt-4 flex gap-2">
+            <Link href="/" className="flex-1">
+              <Button variant="secondary" className="w-full">
+                Back to notes
+              </Button>
+            </Link>
+            <Button className="flex-1" onClick={trySampleData} disabled={tryingSample}>
+              {tryingSample ? "Preparing..." : "Try sample data"}
+            </Button>
+          </div>
+        </div>
       ) : !result ? (
         <div className="card p-4">
           <p className="text-sm font-semibold text-[#1E40AF] dark:text-slate-50">No results yet</p>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-            Paste some sales notes, or tap the button below to try sample data.
+            Paste some sales notes first, or use sample data to preview the results screen.
           </p>
           <div className="mt-4 flex gap-2">
             <Link href="/" className="flex-1">
@@ -84,10 +108,12 @@ export default function ResultsPage() {
         <div className="space-y-4">
           <SummaryCards result={result} />
           <WarningsCard warnings={result.warnings} />
-          <RevenueChart result={result} />
-          <ChannelChart result={result} />
-          <InsightsList result={result} />
           <RecordsList result={result} />
+          <div className="space-y-4">
+            <RevenueChart result={result} />
+            <ChannelChart result={result} />
+          </div>
+          <InsightsList result={result} />
         </div>
       )}
     </main>

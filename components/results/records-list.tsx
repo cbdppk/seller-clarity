@@ -7,13 +7,13 @@ export function RecordsList({ result }: { result: AnalysisResult }) {
     <Card className="p-4">
       <div className="mb-3">
         <p className="text-sm font-semibold text-[#1E40AF] dark:text-slate-50">Extracted records</p>
-        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">From lines that had a clear amount.</p>
+        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Built only from lines with clear sales details.</p>
       </div>
       <div className="space-y-2">
         {result.records.length === 0 ? (
           <p className="text-sm text-slate-500 dark:text-slate-400">
-            No records found. Add prices on each line (example: <span className="font-medium">GH¢ 20</span>), then
-            try again.
+            No clear records yet. Add a price to each line, for example <span className="font-medium">GH¢ 20</span>,
+            then try again.
           </p>
         ) : (
           result.records.map((record, index) => (

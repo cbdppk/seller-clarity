@@ -9,9 +9,9 @@ export function WarningsCard({ warnings }: { warnings?: string[] }) {
       <div className="flex items-start gap-2">
         <AlertTriangle className="mt-0.5 text-amber-700 dark:text-amber-200" size={18} />
         <div>
-          <p className="text-sm font-semibold text-amber-900 dark:text-amber-100">Check these notes</p>
+          <p className="text-sm font-semibold text-amber-900 dark:text-amber-100">Check these lines</p>
           <p className="mt-1 text-xs text-amber-800 dark:text-amber-200">
-            A few lines were unclear. You can re-check and re-run.
+            Some parts were not clear, so the app did not guess.
           </p>
         </div>
       </div>
